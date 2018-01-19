@@ -22,7 +22,7 @@ naver <- function(){
   naver <- readLines("http://www.naver.com",warn=F)
   Encoding(naver)<-"UTF-8"
   naver <- unlist(strsplit(naver,"<"))
-  naver <- unique(naver[grep('class="ell"',naver)])
+  naver <- unique(naver[grep('class="ah_k"',naver)])
   naver <- paste0("<",naver)
   naver <- gsub("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>","",naver)
   return(naver)
@@ -31,7 +31,7 @@ naver <- function(){
 daum <-function(){
   daum <- readLines("http://www.daum.net",warn=F)
   Encoding(daum)<-"UTF-8"
-  daum <- unique(daum[grep("ellipsis_g",daum)+1])
+  daum <- unique(daum[grep('class="link_issue"',daum)])
   daum <- daum[5:14]
   daum <- gsub("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>","",daum)
   return(daum)
